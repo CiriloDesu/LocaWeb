@@ -45,65 +45,75 @@ fun EmailApp() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(16.dp)
     ) {
-        Text("Send an Email", fontSize = 30.sp, modifier = Modifier.padding(bottom = 20.dp))
-
-        OutlinedTextField(
-            value = to,
-            onValueChange = { to = it },
-            label = { Text("To") },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(10.dp))
-
-        OutlinedTextField(
-            value = cc,
-            onValueChange = { cc = it },
-            label = { Text("Cc") },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(10.dp))
-
-        OutlinedTextField(
-            value = bcc,
-            onValueChange = { bcc = it },
-            label = { Text("Bcc") },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(10.dp))
-
-        OutlinedTextField(
-            value = subject,
-            onValueChange = { subject = it },
-            label = { Text("Subject") },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(10.dp))
-
-        OutlinedTextField(
-            value = message,
-            onValueChange = { message = it },
-            label = { Text("Message") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(150.dp)
-                .border(1.dp, Color.Black),
-            maxLines = 8
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Button(onClick = {
+                // Chame a função para abrir a atividade de emails enviados
+                openSentEmailsActivity(context)
+            }) {
+                Text("Ver Emails Enviados")
+            }
+        }
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Button(onClick = {
-            sendEmail(context, to.text, cc.text, bcc.text, subject.text, message.text)
-        }) {
-            Text("Send Email")
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 20.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Send an Email", fontSize = 30.sp, modifier = Modifier.padding(bottom = 20.dp))
+            OutlinedTextField(
+                value = to,
+                onValueChange = { to = it },
+                label = { Text("To") },
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            OutlinedTextField(
+                value = cc,
+                onValueChange = { cc = it },
+                label = { Text("Cc") },
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            OutlinedTextField(
+                value = bcc,
+                onValueChange = { bcc = it },
+                label = { Text("Bcc") },
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            OutlinedTextField(
+                value = subject,
+                onValueChange = { subject = it },
+                label = { Text("Subject") },
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            OutlinedTextField(
+                value = message,
+                onValueChange = { message = it },
+                label = { Text("Message") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp)
+                    .border(1.dp, Color.Black),
+                maxLines = 8
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+            Button(onClick = {
+                sendEmail(context, to.text, cc.text, bcc.text, subject.text, message.text)
+            }) {
+                Text("Send Email")
+            }
         }
     }
 }

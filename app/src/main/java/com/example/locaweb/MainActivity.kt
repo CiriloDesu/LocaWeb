@@ -33,6 +33,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+fun openSentEmailsActivity(context: Context) {
+    val intent = Intent(context, SentEmailsActivity::class.java)
+    context.startActivity(intent)
+}
+
 @Composable
 fun EmailApp() {
     val context = LocalContext.current
